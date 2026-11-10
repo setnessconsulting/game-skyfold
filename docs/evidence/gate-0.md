@@ -21,6 +21,16 @@
 The movie render used the RTX 4070 Laptop GPU. It is a presentation smoke test,
 not a performance qualification.
 
+## Game Maker metadata
+
+- `docs/game-maker-profile.json` was generated with the `project-game-maker`
+  profile model and round-trips through `GameProjectProfile.from_dict`.
+  Profile hash: `sha256:30459be6d4137351ce043ace1e5df01f53312fd6fb86279b933d2776392cdb9a`.
+- The optional `GodotToolchainDeclaration` is not generated. The current
+  `godot-toolchain-v1` parser rejects Godot's multiline `[input]` action
+  values. This is a declared-metadata tool limitation, not a live-execution
+  claim.
+
 ## What this does not prove
 
 - Human feel, fun, or readability. SF-05's five internal sessions are still

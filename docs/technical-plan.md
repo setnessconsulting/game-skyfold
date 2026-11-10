@@ -205,6 +205,13 @@ metadata**:
   run Godot, import assets, export, or play the game.
 - Live evidence comes from this repository's scripts, recorded with the exact
   engine version and source SHA.
+- The profile is generated and validated at
+  `docs/game-maker-profile.json`. The optional
+  `GodotToolchainDeclaration` is **not** generated at this checkpoint: the
+  current `godot-toolchain-v1` INI parser rejects Godot's multiline `[input]`
+  action values. That is a recorded tool limitation, not a live-execution claim.
+  A future parser version may unblock the declaration without changing the
+  project's truth.
 - The `godot-engineer` charter boundaries apply: only declared Godot files; no
   addons, engine-version changes, or main-scene changes without a profile
   update; record commands, exit state, output hash, and source SHA.

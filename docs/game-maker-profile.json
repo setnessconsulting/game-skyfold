@@ -1,0 +1,54 @@
+{
+  "contract_type": "GameProjectProfile",
+  "schema_version": "1.0",
+  "profile_id": "skyfold-gate-0",
+  "display_name": "Skyfold",
+  "repository_full_name": "setnessconsulting/game-skyfold",
+  "expected_remote": "https://github.com/setnessconsulting/game-skyfold.git",
+  "default_branch": "main",
+  "base_commit_sha": "8e393b576140e907f7434102eb9e89468f19fe78",
+  "jira_project_key": "GAME",
+  "jira_epic_key": "GAME-486",
+  "work_scope": [
+    "GAME-487",
+    "GAME-488",
+    "GAME-489",
+    "GAME-490",
+    "GAME-491"
+  ],
+  "lifecycle_stage": "prototype",
+  "target_platforms": [
+    "windows"
+  ],
+  "policy_locations": [
+    "AGENTS.md"
+  ],
+  "policy_rules": {
+    "release": "free public Windows zip; no ads, accounts, or telemetry"
+  },
+  "unity": null,
+  "blender": null,
+  "figma": null,
+  "quality": {
+    "min_fps": 60,
+    "max_frame_ms": 17,
+    "max_memory_mb": 300,
+    "max_install_mb": 500
+  },
+  "budgets": {
+    "max_sources": 32,
+    "max_bytes_total": 131072,
+    "max_bytes_per_file": 32768,
+    "max_files": 64,
+    "max_reference_depth": 3
+  },
+  "godot": {
+    "authority": "godot",
+    "availability": "available",
+    "identity": "godot-4.7.2",
+    "revision": "4.7.2.stable.official.ed1daf0bf",
+    "content_hash": null,
+    "capability_snapshot_id": null
+  },
+  "profile_hash": "sha256:30459be6d4137351ce043ace1e5df01f53312fd6fb86279b933d2776392cdb9a"
+}
