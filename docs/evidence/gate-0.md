@@ -17,6 +17,9 @@
 | Project verification | `godot --headless --path . --script res://tools/verify_project.gd` | **38 checks, 0 failures** |
 | Runtime smoke | `godot --headless --path . --quit-after 300` | No runtime errors |
 | Movie Maker render | `godot --path . --resolution 1280x720 --write-movie <png> --fixed-fps 60 --quit-after 90` | 90 frames rendered; frame reviewed |
+| Export templates | Exact Godot 4.7.2 Windows templates installed under the editor template directory | `version.txt` = `4.7.2.stable` |
+| Windows export smoke | `godot --headless --path . --export-release "Windows Desktop" build/windows/Skyfold.exe` | Pass; `Skyfold.exe` + 32,596-byte `Skyfold.pck` |
+| Exported runtime smoke | `build/windows/Skyfold.exe --headless --quit-after 300` | Exit 0, no runtime errors |
 
 The movie render used the RTX 4070 Laptop GPU. It is a presentation smoke test,
 not a performance qualification.

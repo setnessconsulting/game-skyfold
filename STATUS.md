@@ -16,8 +16,9 @@
 | Gates, thread/graze scoring, combo | Implemented and verified | Headless tests |
 | Instant restart and pause | Implemented | Grey-box scene |
 | Headless verification | Implemented and verified | `tools/ci/verify.ps1`; 38 project checks |
-| CI `game-pr-fast` | Committed; first PR run pending | `.github/workflows/game-pr-fast.yml` |
-| Export templates | Download pending | — |
+| CI `game-pr-fast` | Verified on PR #1 | Workflow run 42904695940; required check |
+| Export templates | Installed and verified | `4.7.2.stable` Windows templates |
+| Windows export smoke | Implemented; not clean-VM qualified | `build/windows/Skyfold.exe` + `.pck`; exported runtime 300-frame smoke |
 | Final art and audio | Not started | — |
 | Campaign, Endless, Daily | Not started | — |
 | Saves and accessibility | Not started | — |

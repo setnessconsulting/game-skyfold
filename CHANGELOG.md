@@ -8,7 +8,9 @@
   gates, thread/graze scoring, crash, restart, pause.
 - Added a playable grey-box flight scene with HUD.
 - Added zero-dependency headless tests and project verification.
-- Added `game-pr-fast` CI scaffolding.
+- Added `game-pr-fast` CI scaffolding and verified it on the first PR.
+- Added a Windows Desktop export preset and a portable export smoke test;
+  the exported runtime completes a 300-frame headless smoke.
 - Added vision, anti-clone, technical plan, and epic documentation.
 
 No release artifact exists yet. The Windows export, final art, audio, campaign,
