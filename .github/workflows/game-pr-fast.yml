@@ -1,0 +1,64 @@
+name: game-pr-fast
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: game-pr-fast-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: verify
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false
+    runs-on: windows-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Godot 4.7.2
+        shell: pwsh
+        run: |
+          $version = "4.7.2"
+          $url = "https://github.com/godotengine/godot/releases/download/$version-stable/Godot_v$version-stable_win64.exe.zip"
+          $expected = "731980F9608D61333E5BAF54A2EF17210ACC7A538446C0CB9969F002ACA1E953"
+          $zip = Join-Path $env:RUNNER_TEMP "godot.zip"
+          Invoke-WebRequest -Uri $url -OutFile $zip -UseBasicParsing
+          $hash = (Get-FileHash $zip -Algorithm SHA256).Hash
+          if ($hash -ne $expected) {
+            throw "Godot zip hash mismatch: $hash"
+          }
+          $dest = Join-Path $env:RUNNER_TEMP "godot"
+          Expand-Archive -Path $zip -DestinationPath $dest -Force
+          $exe = Get-ChildItem $dest -Filter "Godot_v*_console.exe" | Select-Object -First 1
+          if (-not $exe) {
+            $exe = Get-ChildItem $dest -Filter "Godot_v*.exe" | Select-Object -First 1
+          }
+          if (-not $exe) {
+            throw "Godot executable not found after extraction"
+          }
+          "GODOT=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append
+          & $exe.FullName --version
+
+      - name: Verify project
+        shell: pwsh
+        run: .\tools\ci\verify.ps1
+
+  game-pr-fast:
+    name: game-pr-fast
+    needs: verify
+    if: always() && (github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require verification success
+        run: |
+          if [ "${{ needs.verify.result }}" != "success" ]; then
+            echo "verify result: ${{ needs.verify.result }}"
+            exit 1
+          fi
+          echo "Game fast checks passed."
